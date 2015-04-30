@@ -1,8 +1,9 @@
 {
-  "name": "mp3_server_starter",
+  "name": "artistfinder-server",
   "version": "1.0.0",
-  "homepage": "https://github.com/uiuc-web-programming/mp3_server_starter",
+  "homepage": "https://github.com/maarcooliveira/artistfinder-server",
   "authors": [
+    "maarcooliveira <mdeoliv2@illinois.edu>",
     "biplabdeka <biplab.deka@gmail.com>"
   ],
   "dependencies": {
