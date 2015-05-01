@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var router = express.Router();
 
 //replace this with your Mongolab URL
-mongoose.connect('mongodb://localhost/mp3');
+mongoose.connect('mongodb://admin:admin@ds031882.mongolab.com:31882/artistfinder');
 
 // Create our Express application
 var app = express();
