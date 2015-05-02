@@ -5,10 +5,6 @@ var ArtistSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	mbid: {
-		type: String,
-		required: true
-	},
 	bio: {
 		type: String,
 		required: false
@@ -40,6 +36,10 @@ var ArtistSchema = new mongoose.Schema({
 	facebook: {
 		type: String,
 		required: false
+	},
+	favCount: {
+		type: Number,
+		required: true
 	}
 	
 });

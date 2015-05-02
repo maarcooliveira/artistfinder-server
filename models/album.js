@@ -5,11 +5,7 @@ var AlbumSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	mbid: {
-		type: String,
-		required: true
-	},
-	artistMbid: {
+	artistId: {
 		type: String,
 		required: true
 	},
