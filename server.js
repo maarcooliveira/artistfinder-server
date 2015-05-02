@@ -187,7 +187,7 @@ artistRoute.post(function(req, res) {
 	artist.facebook = req.body.facebook;
 	artist.favCount = 0;
 	
-	if (!(artist.name && artist.isBand)) {
+	if (!(artist.name && (artist.isBand !== undefined))) {
 		res.statusCode = 500;
 		res.json({ message: 'Name and isBand are required fields', data: [] });
 	}
@@ -249,7 +249,7 @@ artistIdRoute.put(function(req, res) {
 			artist.facebook = req.body.facebook;
 			artist.favCount = req.body.favCount;
 			
-			if (!(artist.name && artist.isBand)) {
+			if (!(artist.name && (artist.isBand !== undefined))) {
 				res.statusCode = 500;
 				res.json({ message: 'Name and isBand are required fields', data: [] });
 			}
@@ -432,7 +432,7 @@ changelogRoute.get(function(req, res) {
 	var sort = req.query.sort === undefined ? {} : JSON.parse(req.query.sort);
 	var limit = req.query.limit === undefined ? 0 : req.query.limit;
 	
-	Artist.find(user).sort(sort).limit(limit).exec(function (err, logs) {
+	Changelog.find(user).sort(sort).limit(limit).exec(function (err, logs) {
 		if (err) {
 			res.statusCode = 500;
 			res.json({ message: 'Server error. Please try again later', data: [] });
