@@ -185,6 +185,9 @@ artistRoute.post(function(req, res) {
 	artist.lastfm = req.body.lastfm;
 	artist.twitter = req.body.twitter;
 	artist.facebook = req.body.facebook;
+	artist.instagram = req.body.instagram;
+	artist.spotify = req.body.spotify;
+	artist.website = req.body.website;
 	artist.favCount = 0;
 	
 	if (!(artist.name && (artist.isBand !== undefined))) {
@@ -247,6 +250,9 @@ artistIdRoute.put(function(req, res) {
 			artist.lastfm = req.body.lastfm;
 			artist.twitter = req.body.twitter;
 			artist.facebook = req.body.facebook;
+			artist.instagram = req.body.instagram;
+			artist.spotify = req.body.spotify;
+			artist.website = req.body.website;
 			artist.favCount = req.body.favCount;
 			
 			if (!(artist.name && (artist.isBand !== undefined))) {

@@ -37,6 +37,18 @@ var ArtistSchema = new mongoose.Schema({
 		type: String,
 		required: false
 	},
+	instagram: {
+		type: String,
+		required: false
+	},
+	spotify: {
+		type: String,
+		required: false
+	},
+	website: {
+		type: String,
+		required: false
+	},
 	favCount: {
 		type: Number,
 		required: true
