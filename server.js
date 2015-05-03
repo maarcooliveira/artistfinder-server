@@ -159,11 +159,11 @@ userIdRoute.delete(function(req, res) {
 var artistRoute = router.route('/artists');
 
 artistRoute.get(function(req, res) {
-	var name = req.query.name === undefined ? {} : {"name" : "\"" + req.query.name + "\""};
+	var where = req.query.where === undefined ? {} : JSON.parse(req.query.where);
 	var sort = req.query.sort === undefined ? {} : JSON.parse(req.query.sort);
 	var limit = req.query.limit === undefined ? 0 : req.query.limit;
 	
-	Artist.find(name).sort(sort).limit(limit).exec(function (err, artists) {
+	Artist.find(where).sort(sort).limit(limit).exec(function (err, artists) {
 		if (err) {
 			res.statusCode = 500;
 			res.json({ message: 'Error. Please check your query or try again later', data: [] });
