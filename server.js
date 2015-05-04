@@ -310,7 +310,7 @@ albumRoute.get(function(req, res) {
 	var limit = req.query.limit === undefined ? 0 : req.query.limit;
 	var where = artist === {} ? name : artist;
 	
-	Artist.find(where).sort(sort).limit(limit).exec(function (err, albums) {
+	Album.find(where).sort(sort).limit(limit).exec(function (err, albums) {
 		if (err) {
 			res.statusCode = 500;
 			res.json({ message: 'Error. Please check your query or try again later', data: [] });
