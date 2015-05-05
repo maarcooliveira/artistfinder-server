@@ -449,6 +449,26 @@ changelogRoute.get(function(req, res) {
 	});
 });
 
+var changelogsIdRoute = router.route('/changelogs/:id');
+
+changelogsIdRoute.delete(function(req, res) {
+	Changelog.remove({
+		_id: req.params.id
+	}, function(err, album) {
+		if (err) {
+			res.writeHead(404);
+			res.end();
+		}
+		else if (album === 1) {
+			res.json({ message: 'Log deleted', data: [] });
+		}
+		else {
+			res.statusCode = 404;
+			res.json({ message: 'Log not found', data: [] });	
+		}
+	});
+});
+
 // Start the server
 app.listen(port);
 console.log('Awesome! See everything working on port ' + port); 
