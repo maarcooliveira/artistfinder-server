@@ -304,11 +304,9 @@ artistIdRoute.delete(function(req, res) {
 var albumRoute = router.route('/albums');
 
 albumRoute.get(function(req, res) {
-	var name = req.query.name === undefined ? {} : {"name" : "\"" + req.query.name + "\""};
-	var artist = req.query.name === undefined ? {} : {"artistId" : "\"" + req.query.artist + "\""};
+	var where = req.query.where === undefined ? {} : JSON.parse(req.query.where);
 	var sort = req.query.sort === undefined ? {} : JSON.parse(req.query.sort);
 	var limit = req.query.limit === undefined ? 0 : req.query.limit;
-	var where = artist === {} ? name : artist;
 	
 	Album.find(where).sort(sort).limit(limit).exec(function (err, albums) {
 		if (err) {
