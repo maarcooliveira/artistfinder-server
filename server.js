@@ -432,11 +432,11 @@ albumIdRoute.delete(function(req, res) {
 var changelogRoute = router.route('/changelogs');
 
 changelogRoute.get(function(req, res) {
-	var user = req.query.user === undefined ? {} : {"userId" : "\"" + req.query.user + "\""};
+	var where = req.query.where === undefined ? {} : JSON.parse(req.query.where);
 	var sort = req.query.sort === undefined ? {} : JSON.parse(req.query.sort);
 	var limit = req.query.limit === undefined ? 0 : req.query.limit;
 	
-	Changelog.find(user).sort(sort).limit(limit).exec(function (err, logs) {
+	Changelog.find(where).sort(sort).limit(limit).exec(function (err, logs) {
 		if (err) {
 			res.statusCode = 500;
 			res.json({ message: 'Server error. Please try again later', data: [] });
