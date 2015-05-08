@@ -1,6 +1,10 @@
 // Get the packages we need
 var express = require('express');
 var mongoose = require('mongoose');
+var	passport = require('passport');
+var	morgan = require('morgan');
+var	cookieParser = require('cookie-parser');
+var session = require('express-session');
 var User = require('./models/user');
 var Artist = require('./models/artist');
 var Album = require('./models/album');
@@ -10,6 +14,7 @@ var router = express.Router();
 
 //replace this with your Mongolab URL
 mongoose.connect('mongodb://admin:admin@ds031882.mongolab.com:31882/artistfinder');
+require('./config/passport')(passport);
 
 // Create our Express application
 var app = express();
@@ -22,18 +27,26 @@ var allowCrossDomain = function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept");
 	res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
+	res.header('Access-Control-Allow-Credentials', true);
 	next();
 };
 app.use(allowCrossDomain);
-
 // Use the body-parser package in our application
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
+app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(session({ secret: 'passport demo' })); // change later 
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 
 // All our routes will start with /api
 app.use('/api', router);
-
+require('./routes.js')(app, passport);
 //Default route here
 var homeRoute = router.route('/');
 
