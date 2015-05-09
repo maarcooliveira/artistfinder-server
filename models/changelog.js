@@ -14,7 +14,7 @@ var ChangelogSchema = new mongoose.Schema({
 		required: true
 	},
 	date: {
-		type: String,
+		type: Date,
 		required: true
 	},
 	operation: { //insert or update
