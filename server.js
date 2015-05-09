@@ -395,6 +395,7 @@ albumIdRoute.put(function(req, res) {
 			album.image = req.body.image;
 			album.releaseDate = req.body.releaseDate;
 			album.tracks = req.body.tracks;
+			album.artistId = req.body.artistId;
 			
 			if (!(album.name)) {
 				res.statusCode = 500;
