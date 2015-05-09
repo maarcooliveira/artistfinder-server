@@ -31,8 +31,8 @@ module.exports = function(passport) {
 				newUser.password = newUser.generateHash(password);
 				newUser.name = req.body.name;
 				newUser.signupDate = new Date();
-				newUser.collaborations = [];
-				newUser.favorites = [];
+				newUser.collaborations = Array();
+				newUser.favorites = Array();
 				newUser.save(function(err) {
 					if(err)
 						throw err;

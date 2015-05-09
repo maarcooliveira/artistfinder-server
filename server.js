@@ -128,12 +128,12 @@ userIdRoute.put(function(req, res) {
 		else {
 			user.name = req.body.name;
 			user.email = req.body.email;
-			user.password = req.body.password;
-			user.favorites = req.body.favorites;
-			user.collaborations = req.body.collaborations;
+			user.password = req.body.password === user.password ? user.password : user.generateHash(req.body.password);
+			user.favorites = req.body.favorites === undefined ? user.favorites : req.body.favorites;
+			user.collaborations = req.body.collaborations === undefined ? user.collaborations : req.body.collaborations;
 			if (!(user.name && user.email && user.password && user.favorites && user.collaborations)) {
 				res.statusCode = 500;
-				res.json({ message: 'Missing required fields', data: [] });
+				res.json({ message: 'Missing required fields', data: {user: user} });
 			}
 			else {
 				user.save(function (err) {
