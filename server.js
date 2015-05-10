@@ -295,6 +295,7 @@ artistIdRoute.put(function(req, res) {
 });
 
 artistIdRoute.delete(function(req, res) {
+	var id = req.params.id;
 	Artist.remove({
 		_id: req.params.id
 	}, function(err, artist) {
@@ -303,6 +304,13 @@ artistIdRoute.delete(function(req, res) {
 			res.end();
 		}
 		else if (artist === 1) {
+			Changelog.find({"modelId": id}).exec(function (err, logs) {
+				for (var i = 0; i < logs.length; i++) {
+					Changelog.remove({
+						_id: logs[i]._id
+					});
+				}
+			});
 			res.json({ message: 'Artist deleted', data: [] });
 		}
 		else {
