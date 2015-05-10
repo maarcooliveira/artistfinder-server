@@ -142,7 +142,7 @@ userIdRoute.put(function(req, res) {
 						res.json({ message: 'Email already in use', data: [] });
 					}
 					else
-						res.json({ message: 'User updated', data: [] });
+						res.json({ message: 'User updated', data: {user: user} });
 				});
 			}	
 		}
@@ -270,13 +270,13 @@ artistIdRoute.put(function(req, res) {
 			
 			if (!(artist.name && (artist.isBand !== undefined))) {
 				res.statusCode = 500;
-				res.json({ message: 'Name and isBand are required fields', data: [] });
+				res.json({ message: 'Name and isBand are required fields', data: {artist: artist} });
 			}
 			else {
 				artist.save(function (err) {
 					if (err) {
 						res.statusCode = 500;
-						res.json({ message: 'Server error. Please try again later', data: [] });
+						res.json({ message: 'Server error. Please try again later', data: {artist: artist, error: err} });
 					}
 					else {
 						res.json({ message: 'Artist updated', data: artist });

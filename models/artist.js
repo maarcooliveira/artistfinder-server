@@ -50,7 +50,7 @@ var ArtistSchema = new mongoose.Schema({
 		required: false
 	},
 	favCount: {
-		type: Number,
+		type: String,
 		required: true
 	}
 	
