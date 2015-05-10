@@ -223,6 +223,14 @@ artistRoute.post(function(req, res) {
 				log.date = new Date();
 				log.operation = 'post';
 				log.save();
+				
+				User.findById(req.body.userId, function(err, user) {
+					if (err || !user) {}
+					else {
+						user.collaborations.push(artist._id);
+						user.save(function (err) {});
+					}	
+				});
 			}
 		});
 	}
@@ -287,6 +295,14 @@ artistIdRoute.put(function(req, res) {
 						log.date = new Date();
 						log.operation = 'put';
 						log.save();
+						
+						User.findById(req.body.userId, function(err, user) {
+							if (err || !user) {}
+							else {
+								user.collaborations.push(artist._id);
+								user.save(function (err) {});
+							}	
+						});
 					}
 				});
 			}	
@@ -368,6 +384,13 @@ albumRoute.post(function(req, res) {
 				log.date = new Date();
 				log.operation = 'post';
 				log.save();
+				User.findById(req.body.userId, function(err, user) {
+					if (err || !user) {}
+					else {
+						user.collaborations.push(album._id);
+						user.save(function (err) {});
+					}	
+				});
 			}
 		});
 	}
@@ -424,6 +447,14 @@ albumIdRoute.put(function(req, res) {
 						log.date = new Date();
 						log.operation = 'put';
 						log.save();
+						
+						User.findById(req.body.userId, function(err, user) {
+							if (err || !user) {}
+							else {
+								user.collaborations.push(album._id);
+								user.save(function (err) {});
+							}	
+						});
 					}
 				});
 			}	
